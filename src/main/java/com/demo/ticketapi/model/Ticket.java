@@ -9,7 +9,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class Ticket {
     private Long id;
-    private FlightDto flight;
+    private FlightDto flightDto;
     private String passengerName;
     private String passengerEmail;
     private String passengerPassport;

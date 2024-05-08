@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/tickets")
@@ -29,11 +30,26 @@ public class TicketController {
         return flightClient.getAllFlights();
     }
 
+    //Agregado Ale
+    @GetMapping("/vuelos/{id}")
+    public Optional<FlightDto> findFlightById(@PathVariable Long id) {
+        return flightClient.getFlightById(id);
+    }
+
+    //addTicket original
     @PostMapping("/add")
     public Ticket addTicket(@RequestBody Ticket ticket){
         return ticketservice.addTicket(ticket);
     }
 
+/*
+    //METODO addTicket Ale EN PROCESO
+    @PostMapping("/add")
+    public void addTicket(@RequestBody Ticket ticket, @RequestParam Long flightDtoId){
+        ticketservice.addTicket(ticket, flightDtoId);
+
+    }
+*/
 
 
 }
