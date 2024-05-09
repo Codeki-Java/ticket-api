@@ -14,7 +14,7 @@ public interface FlightClient {
     @GetMapping("/vuelos")
     List<FlightDto> getAllFlights();
 
-
     @GetMapping("/vuelos/{id}")
     Optional<FlightDto> getFlightById(@PathVariable Long id);
+
 }

@@ -6,7 +6,6 @@ import com.demo.ticketapi.service.FlightClient;
 import com.demo.ticketapi.service.TicketService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-
 import java.util.List;
 import java.util.Optional;
 
@@ -35,21 +34,17 @@ public class TicketController {
     public Optional<FlightDto> findFlightById(@PathVariable Long id) {
         return flightClient.getFlightById(id);
     }
-
+/*
     //addTicket original
     @PostMapping("/add")
     public Ticket addTicket(@RequestBody Ticket ticket){
         return ticketservice.addTicket(ticket);
+    }*/
+
+    //METODO addTicket Ale
+    @PostMapping("/add/{id}")
+    public Ticket addTicket(@RequestBody Ticket ticket, @PathVariable Long id){
+        return ticketservice.addTicket(ticket, id);
+
     }
-
-/*
-    //METODO addTicket Ale EN PROCESO
-    @PostMapping("/add")
-    public void addTicket(@RequestBody Ticket ticket, @RequestParam Long flightDtoId){
-        ticketservice.addTicket(ticket, flightDtoId);
-
-    }
-*/
-
-
 }

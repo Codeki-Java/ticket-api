@@ -9,51 +9,36 @@ import java.util.List;
 
 @Service
 public class TicketService {
-/*
+
     @Autowired
-    FlightDto flightDto;*/
+    FlightClient flightClient;
 
     private final List<Ticket> tickets = new ArrayList<>();
 
     public List<Ticket> getAllTickets() {
         return tickets;
     }
-
-
+/*
     //Metodo original
     public Ticket addTicket(Ticket addedTicket){
         tickets.add(addedTicket);
         return addedTicket;
     }
+*/
 
+    public Ticket addTicket(Ticket ticket, Long id) {
+        // Obtener el vuelo correspondiente por su ID
+        FlightDto flightToTicket = flightClient.getFlightById(id)
+                .orElseThrow(() -> new RuntimeException("Flight with id " + id + " not found"));
 
-    //VER COMO USAR ticketMapper para crear un vuelo??
+        // Establecer el FlightDto en el ticket
+        ticket.setFlightDto(flightToTicket);
 
-    // Este método mapea una lista de FlightDto a una lista de Ticket con los detalles del pasajero
-    public Ticket ticketMapper(FlightDto flightDto, Ticket ticket) {
-        Ticket newTicket = new Ticket();
-        newTicket.setId(flightDto.getId());
-        newTicket.setFlightDto(flightDto);
-        newTicket.setPassengerName(ticket.getPassengerName());
-        newTicket.setPassengerEmail(ticket.getPassengerEmail());
-        newTicket.setPassengerPassport(ticket.getPassengerPassport());
+        //Agrego el ticket al array
+        tickets.add(ticket);
 
-        return newTicket;
+        //Muestro el ticket
+        return ticket;
     }
 
-/*
-    //Metodo addTicket Ale EN PROCESO
-    public Ticket addTicket(Ticket ticket, Long flightDtoId) {
-        // Obtener el vuelo correspondiente por su ID
-        FlightDto flightDto = flightDto.getId(flightDtoId);
-
-        // Mapear el ticket para el vuelo específico
-        Ticket mappedTicket = ticketMapper(flightDto, ticket);
-
-        // Agregar el ticket mapeado a la lista de tickets del servicio
-        tickets.add(mappedTicket);
-
-        // Retornar el ticket agregado
-        return mappedTicket;
-    }*/
 }
