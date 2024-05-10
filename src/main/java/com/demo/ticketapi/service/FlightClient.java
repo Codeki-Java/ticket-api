@@ -3,7 +3,6 @@ package com.demo.ticketapi.service;
 import com.demo.ticketapi.model.FlightDto;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
 
 import java.util.List;
 import java.util.Optional;
@@ -15,6 +14,6 @@ public interface FlightClient {
     List<FlightDto> getAllFlights();
 
     @GetMapping("/vuelos/{id}")
-    Optional<FlightDto> getFlightById(@PathVariable Long id);
+    Optional<FlightDto> getFlightById();
 
 }

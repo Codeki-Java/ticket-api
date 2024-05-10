@@ -32,7 +32,7 @@ public class TicketController {
     //Agregado Ale
     @GetMapping("/vuelos/{id}")
     public Optional<FlightDto> findFlightById(@PathVariable Long id) {
-        return flightClient.getFlightById(id);
+        return flightClient.getFlightById();
     }
 /*
     //addTicket original
@@ -45,6 +45,5 @@ public class TicketController {
     @PostMapping("/add/{id}")
     public Ticket addTicket(@RequestBody Ticket ticket, @PathVariable Long id){
         return ticketservice.addTicket(ticket, id);
-
     }
 }

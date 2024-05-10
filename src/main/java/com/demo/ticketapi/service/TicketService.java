@@ -18,17 +18,10 @@ public class TicketService {
     public List<Ticket> getAllTickets() {
         return tickets;
     }
-/*
-    //Metodo original
-    public Ticket addTicket(Ticket addedTicket){
-        tickets.add(addedTicket);
-        return addedTicket;
-    }
-*/
 
     public Ticket addTicket(Ticket ticket, Long id) {
         // Obtener el vuelo correspondiente por su ID
-        FlightDto flightToTicket = flightClient.getFlightById(id)
+        FlightDto flightToTicket = flightClient.getFlightById()
                 .orElseThrow(() -> new RuntimeException("Flight with id " + id + " not found"));
 
         // Establecer el FlightDto en el ticket
@@ -40,5 +33,4 @@ public class TicketService {
         //Muestro el ticket
         return ticket;
     }
-
 }
